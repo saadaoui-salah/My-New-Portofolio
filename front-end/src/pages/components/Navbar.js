@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import {useEffect} from 'react'
 import { Grid } from '@material-ui/core';
+import { useMediaPredicate } from "react-media-hook";
 import Aos from "aos"
 const useStyles = makeStyles((theme) => ({
     nav: {
@@ -51,6 +52,7 @@ function About() {
     useEffect(() => {
         Aos.init({ duration: 300,delay:100});
       }, [])
+      const biggerThan400 = useMediaPredicate("(min-width: 1000px)");
     return (
         <div data-aos="fade-down" className={classes.nav} >
             <Grid container
@@ -59,10 +61,11 @@ function About() {
                 justify="center"
                 alignItems="center"
             >
-                <Grid item md={4} xs={4}>
+                <Grid item md={3} xs={12}>
                     <h1 className={classes.logo}>EYE TECH<span className={classes.dot}>.</span></h1>
                 </Grid>
-                <Grid item md={8} xs={8}>
+                {biggerThan400 && 
+                <Grid item md={9}>
                     <ul className={classes.list} >
                         <li className={classes.deco}><a className={classes.adeco} href="#Home">HOME</a></li>
                         <li className={classes.deco}><a className={classes.adeco} href="#About">ABOUT</a></li>
@@ -70,7 +73,7 @@ function About() {
                         <li className={classes.deco}><a className={classes.adeco} href="#Contact">CONTACT ME</a></li>
                     </ul>
                 </Grid>
-        
+        }
             </Grid>
         </div>
     );

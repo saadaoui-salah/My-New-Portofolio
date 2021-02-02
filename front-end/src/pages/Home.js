@@ -1,4 +1,9 @@
 import React from 'react'
+import {
+  RiLinkedinBoxLine,
+  RiGithubLine,
+}
+  from "react-icons/ri";
 import { Avatar, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -35,16 +40,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
 
   },
-  btn: {
-    marginTop: '20px',
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: '50px',
-    boxShadow: 'inset 0 30 45px 55px #f3f7f7',
-    background: '#f1f1f1',
-  },
   wel: {
     color: '#fff'
+  },
+  icon:{
+    fontSize: '50px',
+    color:'#3f8a78',
+    transition:'0.5s',
+    '&:hover':{
+      color:'#1de9b6',
+    }
   },
   card: {
     backgroundColor: "#2c303a",
@@ -145,6 +150,15 @@ function Home() {
                 <animated.h3 style={WelAnim} className={classes.wel} >Coding dfmkhdlfihlhf q lfhlqkhfl qshfkl skhflhkqsf hlit's not just away to make </animated.h3>
               </Grid>
             </Grid>
+          </Grid>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <a className={classes.icon} alt="Visit My Github Account" href="https://www.linkedin.com/in/salah-saadaoui-5757891aa"><RiLinkedinBoxLine/></a>
+            <a className={classes.icon} alt="Visit My Linkedin Account" href="https://github.com/saadaoui-salah"><RiGithubLine/></a>
           </Grid>
         </Card>
       </Grid>

@@ -4,7 +4,7 @@ import { Typography, Card, CardContent, CardHeader } from '@material-ui/core';
 import Aos from "aos"
 import "aos/dist/aos.css"
 import { useSpring, animated } from 'react-spring'
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -74,11 +74,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function About(props) {
+const About = (Skills) => {
   const classes = useStyles()
+  const state = useState()
   useEffect(() => {
     Aos.init({ duration: 300, delay: 100 });
   }, [])
+  console.log(state)
   const barAnim = useSpring({
     from: {
       width: 0,
