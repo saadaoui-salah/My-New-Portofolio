@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 import { Grid } from '@material-ui/core';
 import { useMediaPredicate } from "react-media-hook";
 import Aos from "aos"
 const useStyles = makeStyles((theme) => ({
     nav: {
-        marginTop:"100px",
-        borderRadius:"5px",
+        marginTop: "100px",
+        borderRadius: "5px",
         height: "60px",
         backgroundColor: '#EDF1FD',
         padding: '0px',
@@ -44,17 +44,35 @@ const useStyles = makeStyles((theme) => ({
     },
     mg: {
         marginTop: '-20px'
+    },
+    Smallnav: {
+        marginTop: '50px',
+        borderRadius: "5px",
+        height: "60px",
+        backgroundColor: '#EDF1FD',
+        padding: '0px',
+        display: 'flex',
+        position: 'fixed',
+        zIndex: 10000,
+        width: '100%',
+        boxShadow: " 2px 2px 12px rgba(0, 0, 0, 0.05)",
+
     }
 }));
 
 function About() {
     const classes = useStyles()
     useEffect(() => {
-        Aos.init({ duration: 300,delay:100});
-      }, [])
-      const biggerThan400 = useMediaPredicate("(min-width: 1000px)");
+        Aos.init({ duration: 300, delay: 100 });
+    }, [])
+    const biggerThan400 = useMediaPredicate("(min-width: 1000px)");
     return (
-        <div data-aos="fade-down" className={classes.nav} >
+
+        <div data-aos="fade-down"
+            data-aos-essing="linear"
+            className={
+                !biggerThan400 && classes.Smallnav || biggerThan400 && classes.nav
+            }>
             <Grid container
                 className={classes.mg}
                 duration="column"
@@ -64,16 +82,16 @@ function About() {
                 <Grid item md={3} xs={12}>
                     <h1 className={classes.logo}>EYE TECH<span className={classes.dot}>.</span></h1>
                 </Grid>
-                {biggerThan400 && 
-                <Grid item md={9}>
-                    <ul className={classes.list} >
-                        <li className={classes.deco}><a className={classes.adeco} href="#Home">HOME</a></li>
-                        <li className={classes.deco}><a className={classes.adeco} href="#About">ABOUT</a></li>
-                        <li className={classes.deco}><a className={classes.adeco} href="#Portofolio">PORTOFOLIO</a></li>
-                        <li className={classes.deco}><a className={classes.adeco} href="#Contact">CONTACT ME</a></li>
-                    </ul>
-                </Grid>
-        }
+                {biggerThan400 &&
+                    <Grid item md={9}>
+                        <ul className={classes.list} >
+                            <li className={classes.deco}><a className={classes.adeco} href="#Home">HOME</a></li>
+                            <li className={classes.deco}><a className={classes.adeco} href="#About">ABOUT</a></li>
+                            <li className={classes.deco}><a className={classes.adeco} href="#Portofolio">PORTOFOLIO</a></li>
+                            <li className={classes.deco}><a className={classes.adeco} href="#Contact">CONTACT ME</a></li>
+                        </ul>
+                    </Grid>}
+
             </Grid>
         </div>
     );

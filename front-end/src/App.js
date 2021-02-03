@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import About from './pages/About';
@@ -7,11 +7,13 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import Navbar from './pages/components/Navbar'
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import axios from 'axios'
+import instance from './axios'
 
 const useStyles = makeStyles(() => ({
   bg: {
-    backgroundColor: '#000'
+    backgroundColor: '#000',
+    margin:0,
+    padding:0,
   }
 }))
 const theme = createMuiTheme({
@@ -38,16 +40,24 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  const newLocal = 'http://127.0.0.1:8000/api-1/skill';
-  const [skills, setSkills] = useState(skills => {
-     axios
-      .get(newLocal)
-      .then((response) => {
-        console.log(response.data)
-        setSkills(response.data)
-      })
-      .catch((error) => console.log(error))
-  })
+  const [skills, setSkills] = useState([])
+  const [Projects, setProjects] = useState([])
+ 
+  async function getSkills(){
+    const response = await instance.get('/api-1/skills?format=json')
+    console.log(response.data)
+    setSkills(response.data)
+  }
+  async function getProjects(){
+    const response = await instance.get('/api-2/project?format=json')
+    console.log(response.data)
+    setProjects(response.data)
+  }
+ 
+  useEffect(() => {
+    getSkills()
+    getProjects()
+  },[])
   const classes = useStyles();
   return (
     <div className={classes.bg}>
@@ -59,8 +69,8 @@ function App() {
       </Grid>
       <Home></Home>
       <h1 className={classes.white}></h1>
-      <About></About>
-      <Portofolio></Portofolio>
+      <About Skills={skills}></About>
+      <Portofolio Projects={Projects}></Portofolio>
       <Contact></Contact>
     </div>
   );

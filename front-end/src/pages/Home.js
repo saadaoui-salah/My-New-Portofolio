@@ -43,12 +43,12 @@ const useStyles = makeStyles((theme) => ({
   wel: {
     color: '#fff'
   },
-  icon:{
+  icon: {
     fontSize: '50px',
-    color:'#3f8a78',
-    transition:'0.5s',
-    '&:hover':{
-      color:'#1de9b6',
+    color: '#3f8a78',
+    transition: '0.5s',
+    '&:hover': {
+      color: '#1de9b6',
     }
   },
   card: {
@@ -120,17 +120,16 @@ function Home() {
                 alignItems="center"
               >
                 <Avatar className={classes.avatar}>NN</Avatar>
-                <animated.h2 style={MeAnim} className={classes.text}>I am Salah Saadaoui</animated.h2>
-                <h2 className={classes.text}>
-                  <Typical
-                    loop={Infinity}
-                    wrapper="b"
-                    steps={[' Web App Developer', 1500,
-                      ' Mobile App Developer', 1500,
-                      ' Desktop App Developer', 1500,
-                      ' Deep Learning Enginier', 1500,]}>
-                  </Typical>
-                </h2>
+
+              </Grid>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+                <a className={classes.icon} alt="Visit My Github Account" href="https://www.linkedin.com/in/salah-saadaoui-5757891aa"><RiLinkedinBoxLine /></a>
+                <a className={classes.icon} alt="Visit My Linkedin Account" href="https://github.com/saadaoui-salah"><RiGithubLine /></a>
               </Grid>
             </Grid>
             <Grid
@@ -139,26 +138,25 @@ function Home() {
               lg={6}
               xs={12}
             >
-
               <Grid container
                 direction="column"
                 justify="center"
                 alignItems="center"
               >
                 <animated.h2 style={HelloAnim} className={classes.text}>Hello <span className={classes.span}>!</span></animated.h2>
+                <animated.h2 style={MeAnim} className={classes.text}>I am Salah Saadaoui</animated.h2>
+                <Typical
+                  className={classes.text}
+                  loop={Infinity}
+                  wrapper="h2"
+                  steps={[' Web App Developer', 2000,
+                    ' Desktop App Developer', 2000,
+                    ' Deep Learning Enginier', 2000,]}>
+                </Typical>
                 <animated.h3 style={WelAnim} className={classes.wel} >Welcome To My Website</animated.h3>
                 <animated.h3 style={WelAnim} className={classes.wel} >Coding dfmkhdlfihlhf q lfhlqkhfl qshfkl skhflhkqsf hlit's not just away to make </animated.h3>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            <a className={classes.icon} alt="Visit My Github Account" href="https://www.linkedin.com/in/salah-saadaoui-5757891aa"><RiLinkedinBoxLine/></a>
-            <a className={classes.icon} alt="Visit My Linkedin Account" href="https://github.com/saadaoui-salah"><RiGithubLine/></a>
           </Grid>
         </Card>
       </Grid>

@@ -8,6 +8,5 @@ from .views import SkilsListViewset, getp, TechnologiesListViewset
 #router.register(r'tech-api', TechnologiesListViewset)
 
 urlpatterns = [
-    path('skill',SkilsListViewset.as_view()),
-    path('tech',TechnologiesListViewset.as_view())
+    path('skills',SkilsListViewset.as_view()),
 ]

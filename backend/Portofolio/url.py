@@ -4,11 +4,12 @@ from rest_framework import routers
 from .views import ProjectListViewset
 
 ##############   API   #######################
+#router = routers.DefaultRouter()
+#router.register(r'api', ProjectListViewset)
+
+
+
+
 urlpatterns = [
-    path('project',ProjectListViewset.as_view())
+    path('projects',ProjectListViewset.as_view())
 ]
-
-
-
-router = routers.DefaultRouter()
-router.register(r'api', ProjectListViewset)

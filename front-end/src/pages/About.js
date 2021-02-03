@@ -4,9 +4,9 @@ import { Typography, Card, CardContent, CardHeader } from '@material-ui/core';
 import Aos from "aos"
 import "aos/dist/aos.css"
 import { useSpring, animated } from 'react-spring'
-import { useEffect,useState } from 'react';
+import { useEffect } from 'react';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
     textAlign: 'center',
   },
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     height: '6px',
     background: '#f1f1f1',
     borderRadius: '30px',
-    marginTop: '9px'
+
   },
   title: {
     color: '#54fdd4',
@@ -73,14 +73,16 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px'
   }
 }));
-
+const technologyStyle = makeStyles((percentage) => ({
+  width:{
+    width:percentage
+  }
+}))
 const About = (Skills) => {
   const classes = useStyles()
-  const state = useState()
   useEffect(() => {
     Aos.init({ duration: 300, delay: 100 });
   }, [])
-  console.log(state)
   const barAnim = useSpring({
     from: {
       width: 0,
@@ -97,30 +99,35 @@ const About = (Skills) => {
         <Grid item xs={4} md={5}><div className={classes.divider1}></div></Grid>
         <Grid item xs={4} md={2} ><h1 className={classes.header}>My Skills</h1></Grid>
         <Grid item xs={4} md={5}><div className={classes.divider2}></div></Grid>
-        <Grid item lg={4} xl={6} md={4} xs={12}>
-          
-          <Card data-aos="flip-left" className={classes.box}>
-            <h1 data-aos="fade-top" className={classes.title}> Title </h1>
-
-            <Grid item xs={12} md={10}>
-              <CardContent>
-                <Grid item xs={12} md={6} lg={6}>
-                <Grid container className={classes.mgr} >
-                  <Grid item md={2} xs={2} >
-                    <Typography data-aos="fade-right" data-aos-duration="800" className={classes.sliderText} gutterBottom>Django</Typography></Grid>
-                  <Grid item md={1} xs={1}></Grid>
-                  <Grid item md={4} xs={9}>
-                    <div data-aos="fade-left" data-aos-duration="800" className={classes.SlideBg}><animated.span style={barAnim} className={classes.SliedBar}></animated.span></div>
-                  </Grid>
-                  <Grid item xs={12} md={5}>
-                    <img src="./pages/image.png" />
-                  </Grid>
+        {Skills.Skills.map((skill) => {
+          return (
+            <Grid item lg={4} xl={4} md={4} key={skill.id} xs={12} >
+              <Card data-aos="flip-left" className={classes.box}>
+                <h1 data-aos="fade-top" className={classes.title}> {skill.Name} </h1>
+                <Grid item xs={12} md={12}>
+                  <CardContent>
+                    {skill.Technologies.map((technology) => {
+                      const technologyStyle = technologyStyle(technology.Percentage)
+                      return (
+                        <Grid item xs={12} md={12} lg={12} xl={12}>
+                          <Grid container direction="row" alignItems="center" justify="center" >
+                            <Grid item md={3} lg={3} xs={2}>
+                              <Typography data-aos="fade-right" data-aos-duration="800" className={classes.sliderText} >{technology.Name}</Typography>
+                            </Grid>
+                            <Grid item md={1} lg={1} xs={1}></Grid>
+                            <Grid item md={8} lg={8} xs={10}>
+                              <div data-aos="fade-left" data-aos-duration="800" className={classes.SlideBg}><animated.span style={barAnim} className={technologyStyle.width}></animated.span></div>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      )
+                    })}
+                  </CardContent>
                 </Grid>
-                </Grid>
-              </CardContent>
+              </Card>
             </Grid>
-          </Card>
-        </Grid>
+          )
+        })}
       </Grid>
       <div className={classes.margin}></div>
     </div>
