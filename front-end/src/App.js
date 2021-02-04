@@ -42,21 +42,30 @@ const theme = createMuiTheme({
 function App() {
   const [skills, setSkills] = useState([])
   const [Projects, setProjects] = useState([])
+  const [Tech, setTech] = useState([])
  
   async function getSkills(){
     const response = await instance.get('/api-1/skills?format=json')
     console.log(response.data)
     setSkills(response.data)
   }
+  
   async function getProjects(){
     const response = await instance.get('/api-2/project?format=json')
     console.log(response.data)
     setProjects(response.data)
   }
+
+  async function getTech(){
+    const response = await instance.get('/api-1/tech?format=json')
+    console.log(response.data)
+    setTech(response.data)
+  }
  
   useEffect(() => {
     getSkills()
     getProjects()
+    getTech()
   },[])
   const classes = useStyles();
   return (
@@ -69,8 +78,7 @@ function App() {
       </Grid>
       <Home></Home>
       <h1 className={classes.white}></h1>
-      <About Skills={skills}></About>
-      <Portofolio Projects={Projects}></Portofolio>
+      <About Tech={Tech} Skills={skills}></About>
       <Contact></Contact>
     </div>
   );

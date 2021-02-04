@@ -74,15 +74,14 @@ const useStyles = makeStyles(() => ({
   }
 }));
 const technologyStyle = makeStyles((percentage) => ({
-  width:{
-    width:percentage
+  width: {
+    width: percentage
   }
 }))
-const About = (Skills) => {
+
+
+const Content = (Tech, skill) => {
   const classes = useStyles()
-  useEffect(() => {
-    Aos.init({ duration: 300, delay: 100 });
-  }, [])
   const barAnim = useSpring({
     from: {
       width: 0,
@@ -94,34 +93,63 @@ const About = (Skills) => {
     delay: 300
   })
   return (
+    <Grid container>
+      {skill.Technologies.map((technology) => {
+        const tech = Tech.map((t) => technology === t.ID)
+        const technologyStyle = technologyStyle(tech.Percentage)
+        console.log(tech)
+        return (
+          <Grid item xs={12} md={12} lg={12} xl={12}>
+            <Grid container direction="row" alignItems="center" justify="center" >
+              <Grid item md={3} lg={3} xs={2}>
+                <Typography data-aos="fade-right" data-aos-duration="800" className={classes.sliderText} >{tech.Name}</Typography>
+              </Grid>
+              <Grid item md={1} lg={1} xs={1}></Grid>
+              <Grid item md={8} lg={8} xs={10}>
+                <div data-aos="fade-left" data-aos-duration="800" className={classes.SlideBg}><animated.span style={barAnim} className={technologyStyle.width}></animated.span></div>
+              </Grid>
+            </Grid>
+          </Grid>
+        )
+      })}
+    </Grid>
+  )
+}
+function About(Skills, Tech) {
+  const classes = useStyles()
+  useEffect(() => {
+    Aos.init({ duration: 300, delay: 100 });
+  }, [])
+  return (
     <div id="About" className={classes.paper}>
       <Grid container>
-        <Grid item xs={4} md={5}><div className={classes.divider1}></div></Grid>
-        <Grid item xs={4} md={2} ><h1 className={classes.header}>My Skills</h1></Grid>
-        <Grid item xs={4} md={5}><div className={classes.divider2}></div></Grid>
+        <Grid item xs={4} md={5}>
+          <div className={classes.divider1}></div>
+        </Grid>
+        <Grid item xs={4} md={2}>
+          <h1 className={classes.header}>
+            My Skills
+          </h1>
+        </Grid>
+        <Grid item xs={4} md={5}>
+          <div className={classes.divider2}></div>
+        </Grid>
         {Skills.Skills.map((skill) => {
           return (
             <Grid item lg={4} xl={4} md={4} key={skill.id} xs={12} >
-              <Card data-aos="flip-left" className={classes.box}>
-                <h1 data-aos="fade-top" className={classes.title}> {skill.Name} </h1>
-                <Grid item xs={12} md={12}>
+              <Card data-aos="flip-left"
+                className={classes.box}>
+                <h1 data-aos="fade-top"
+                  className={classes.title}
+                >
+                  {skill.Name}
+                </h1>
+                <Grid item
+                  xs={12}
+                  md={12}
+                >
                   <CardContent>
-                    {skill.Technologies.map((technology) => {
-                      const technologyStyle = technologyStyle(technology.Percentage)
-                      return (
-                        <Grid item xs={12} md={12} lg={12} xl={12}>
-                          <Grid container direction="row" alignItems="center" justify="center" >
-                            <Grid item md={3} lg={3} xs={2}>
-                              <Typography data-aos="fade-right" data-aos-duration="800" className={classes.sliderText} >{technology.Name}</Typography>
-                            </Grid>
-                            <Grid item md={1} lg={1} xs={1}></Grid>
-                            <Grid item md={8} lg={8} xs={10}>
-                              <div data-aos="fade-left" data-aos-duration="800" className={classes.SlideBg}><animated.span style={barAnim} className={technologyStyle.width}></animated.span></div>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      )
-                    })}
+                    <Content skill={skill} Tech={Tech} />
                   </CardContent>
                 </Grid>
               </Card>
