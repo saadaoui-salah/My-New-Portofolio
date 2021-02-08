@@ -43,27 +43,33 @@ function App() {
   const [skills, setSkills] = useState([])
   const [Projects, setProjects] = useState([])
   const [Techs, setTechs] = useState([])
+  const [Specialyties, setSpecialyties] = useState([])
  
+  async function getSkills(){
+    const response = await instance.get('/api-1/skills?format=json')
+    setSkills(response.data)
+  }
+
+  async function getSpecialities(){
+    const response = await instance.get('/api-1/specialities?format=json')
+    setSpecialyties(response.data)
+  }
+  
+  async function getProjects(){
+    const response = await instance.get('/api-2/projects?format=json')
+    setProjects(response.data)
+  }
+  
+  async function getTechs(){
+    const response = await instance.get('/api-2/techs?format=json')
+    setTechs(response.data)
+  }
   
   useEffect(() => {
-    async function getSkills(){
-      const response = await instance.get('/api-1/skills?format=json')
-      setSkills(response.data)
-    }
-    
-    async function getProjects(){
-      const response = await instance.get('/api-2/projects?format=json')
-      setProjects(response.data)
-    }
-    
-    async function getTechs(){
-      const response = await instance.get('/api-1/tech?format=json')
-      setTechs(response.data)
-    }
     getSkills()
     getTechs()
     getProjects()
-    
+    getSpecialities()
   },[])
   const classes = useStyles();
   return (
@@ -76,8 +82,9 @@ function App() {
       </Grid>
       <Home></Home>
       <h1 className={classes.white}></h1>
-      <About Skills={skills} Techs={Techs}></About>
-      <Contact></Contact>
+      <About Skills={skills} Specialyties={Specialyties}/>
+      <Portofolio Projects={Projects} Techs={Techs}/>
+      <Contact/>
     </div>
   );
 }

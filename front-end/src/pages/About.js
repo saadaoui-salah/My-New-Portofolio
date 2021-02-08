@@ -98,7 +98,6 @@ const Bars = (data) => {
   }))
   const technologyStyle = techStyle();
   const classes = useStyles()
-  console.log(data['Percentage'])
   return (
     <>
       <Grid container direction="row" alignItems="center" justify="center" >
@@ -115,7 +114,7 @@ const Bars = (data) => {
 }
 
 function About(data) {
-
+  console.log(data)
   const classes = useStyles()
 
   useEffect(() => {
@@ -137,28 +136,28 @@ function About(data) {
         <Grid item xs={4} md={5}>
           <div className={classes.divider2}></div>
         </Grid>
-        {data.Skills.map((skill) => {
+        {data.Specialyties.map((speciality) => {
           return (
-            <Grid item lg={4} xl={4} md={4} key={skill.id} xs={12} >
+            <Grid item lg={4} xl={4} md={4} key={speciality.id} xs={12} >
               <Card data-aos="flip-left"
                 className={classes.box}>
                 <h1 data-aos="fade-top"
                   className={classes.title}
                 >
-                  {skill.Name}
+                  {speciality.Name}
                 </h1>
                 <Grid item
                   xs={12}
                   md={12}
                 >
-                  {skill.Technologies.map((technology) => {
+                  {speciality.Skills.map((sk) => {
 
                     return (
                       <CardContent >
-                        {data.Techs.map((tech) => {
-                          if (tech.id === technology) {
+                        {data.Skills.map((skill) => {
+                          if (skill.id === sk) {
                             return (
-                              <Bars Percentage={tech.Percentage} Name={tech.Name} key={tech.id} />
+                              <Bars Percentage={skill.Percentage} Name={skill.Name} key={skill.id} />
                             )
                           }
                         })}

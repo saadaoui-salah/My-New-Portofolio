@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Skill,Technology
+from .models import Skill,Speciality
 
 admin.site.register(Skill)
-admin.site.register(Technology)
+admin.site.register(Speciality)

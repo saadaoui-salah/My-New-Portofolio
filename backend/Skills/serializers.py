@@ -8,7 +8,7 @@ class SkillSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class TechnologySerializer(ModelSerializer):
+class SpecialitySerializer(ModelSerializer):
     class Meta:
-        model = Technology
+        model = Speciality
         fields = '__all__'

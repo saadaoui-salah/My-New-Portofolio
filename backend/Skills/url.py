@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SkilsListViewset, TechnologiesListViewset
+from .views import *
 
 ##############   API   #######################
 #router = routers.SimpleRouter()
@@ -9,5 +9,5 @@ from .views import SkilsListViewset, TechnologiesListViewset
 
 urlpatterns = [
     path('skills',SkilsListViewset.as_view()),
-    path('tech',TechnologiesListViewset.as_view()),
+    path('specialities',SpecialityListViewset.as_view()),
 ]

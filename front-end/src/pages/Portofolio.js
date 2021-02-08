@@ -6,13 +6,12 @@ import {
   Card,
   Grid,
   CardActionArea,
-  CardMedia,
   CardContent,
   Typography,
   CardActions,
   Button,
 } from '@material-ui/core'
-const css = makeStyles((theme) => ({
+const css = makeStyles(() => ({
   paper: {
     margin: '0px',
     padding: '0px',
@@ -28,39 +27,59 @@ const css = makeStyles((theme) => ({
   text: {
     color: '#fff',
   },
-  btn: {
-    color: '#2196f3',
-    fontWeight: 'bold',
-    background: '#fff',
-  },
   Cardheader: {
     color: '#EDF1FD'
   },
   header: {
-    textAlign: 'center',
-    backgroundColor: '#2c303a',
-    color: '#54fdd4',
     opacity: 0.8,
+    color: '#54fdd4',
     marginTop: '40px',
     borderRadius: '8px',
+    textAlign: 'center',
+    backgroundColor: '#2c303a',
     borderColor: 'linear-gradient(93.4deg, #4d76d5 8.16%, #5bd9ff 37.71%, #54fdd4 64.19%, #5ee58d 87.62%, #1af563 99.34%)'
   },
   divider1: {
+    height: '3px',
     marginTop: '20px',
     background: 'linear-gradient(93.4deg, #4d76d5 8.16%, #5bd9ff 37.71%, #54fdd4 64.19%, #5ee58d 87.62%, #1af563 99.34%)',
-    height: '3px',
   },
   divider2: {
+    height: '3px',
     marginTop: '20px',
     background: 'linear-gradient(80.4deg, #1af563 8.16%, #5ee58d 37.71%, #54fdd4 64.19%, #5bd9ff 87.62%, #4d76d5 99.34%)',
-    height: '3px',
   },
+  image: {
+    width: '100%',
+    height: '300px',
+    position: 'absolut',
+  }
 }));
 
+const Tech = (data) => {
+  const name = data.tech
+  const bgColor = data.bg
+  const txtColor = data.txt
+  const style = makeStyles(() => ({
+    
+    txt: {
+      color: txtColor ,
+      fontSize:'0.8em',
+      margin: '6px 3px',
+      padding: '2px 6px',
+      borderRadius:'20px',
+      display: 'inline-block',
+      backgroundColor: bgColor,
+    }
+  }))
+  const classes = style()
+  return (
+      <p className={classes.txt}>{name}</p>
+  )
+}
 
-function Portofolio(projects) {
+function Portofolio(data) {
   const classes = css()
-
   useEffect(() => {
     Aos.init({ duration: 300, delay: 100 });
   }, [])
@@ -76,15 +95,11 @@ function Portofolio(projects) {
         <Grid item xs={4} md={5}><div className={classes.divider2}></div></Grid>
       </Grid>
       <Grid container>
-        {projects.projects.map((project) => {
+        {data.Projects.map((project) => {
           return (
             <Grid item lg={3} ml={4} md={6} xl={6} xs={12}>
               <Card data-aos="zoom-in" className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                  />
+                <CardActionArea alt="Click Me" href={project.Url}>
                   <CardContent>
                     <Grid
                       container
@@ -100,31 +115,30 @@ function Portofolio(projects) {
                     </Typography>
                     {project.Technologies.map((technology) => {
                       return (
-                        <div>
-                          <p>{technology.Name}</p>
-                        </div>
+                        <>
+                          {data.Techs.map((tech) => {
+                            if (technology === tech.id) {
+                              const name = tech.Name
+                              const txtColor = tech.TextColor
+                              const bgColor = tech.BackgroundColor
+                              return (
+                                  <Tech tech={name} txt={txtColor} bg={bgColor} />
+                              )
+                            }
+                          })}
+                        </>
                       )
                     })}
-                    <img src={project.Image} />
+                    <img className={classes.image} alt="Click Me" src={project.Image} />
                   </CardContent>
                 </CardActionArea>
-                <CardActions >
-                  <Grid
-                    container
-                    direction="column"
-                    justify="center"
-                    alignItems="center" >
-                    <Button className={classes.btn}>
-                      Show
-                </Button>
-                  </Grid>
-                </CardActions>
+                
               </Card>
             </Grid>
           )
         })}
       </Grid>
-    </div>
+    </div >
   );
 }
 
