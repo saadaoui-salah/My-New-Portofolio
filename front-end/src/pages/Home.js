@@ -3,11 +3,11 @@ import {
   RiLinkedinBoxLine,
   RiGithubLine,
 }
-  from "react-icons/ri";
+from "react-icons/ri";
+import image from './image.jpg'
 import { Avatar, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { useSpring, animated } from 'react-spring'
 import Typical from 'react-typical'
 import Aos from 'aos'
 import { useEffect } from 'react'
@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
   },
   wel: {
+    margin:'10px',
     color: '#fff'
   },
   icon: {
@@ -60,36 +61,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 function Home() {
-  const HelloAnim = useSpring({
-    from: {
-      opacity: 0,
-      transition: "0.5s"
-    },
-    to: {
-      opacity: 1,
-    },
-    delay: 200
-  })
-  const MeAnim = useSpring({
-    from: {
-      opacity: 0,
-      transition: "0.5s"
-    },
-    to: {
-      opacity: 1,
-    },
-    delay: 500
-  })
-  const WelAnim = useSpring({
-    from: {
-      opacity: 0,
-      transition: "0.5s"
-    },
-    to: {
-      opacity: 1,
-    },
-    delay: 800
-  })
   useEffect(() => {
     Aos.init();
   }, [])
@@ -119,7 +90,7 @@ function Home() {
                 justify="center"
                 alignItems="center"
               >
-                <Avatar className={classes.avatar}>NN</Avatar>
+                <Avatar alt="Salah Saadaoui" src={image} className={classes.avatar}></Avatar>
 
               </Grid>
               <Grid
@@ -143,18 +114,21 @@ function Home() {
                 justify="center"
                 alignItems="center"
               >
-                <animated.h2 style={HelloAnim} className={classes.text}>Hello <span className={classes.span}>!</span></animated.h2>
-                <animated.h2 style={MeAnim} className={classes.text}>I am Salah Saadaoui</animated.h2>
+                <h2 className={classes.text}>Hello <span className={classes.span}>!</span></h2>
+                <h2 className={classes.text}>I am Salah Saadaoui</h2>
                 <Typical
                   className={classes.text}
                   loop={Infinity}
                   wrapper="h2"
                   steps={[' Web App Developer', 2000,
-                    ' Desktop App Developer', 2000,
-                    ' Deep Learning Enginier', 2000,]}>
+                    'Data Scientist', 2000,
+                    'AI Enginier', 2000,]}>
                 </Typical>
-                <animated.h3 style={WelAnim} className={classes.wel} >Welcome To My Website</animated.h3>
-                <animated.h3 style={WelAnim} className={classes.wel} >Coding dfmkhdlfihlhf q lfhlqkhfl qshfkl skhflhkqsf hlit's not just away to make </animated.h3>
+                <h3 className={classes.wel} >Welcome To My Website</h3>
+                <h3 className={classes.wel} >
+                  Coding is my hobbie i enjoy building things, solving problems,
+                  I learned a lot that's why i have many skills and technologies i always seek to gain new skills to be more stronger day after day    
+                </h3>
               </Grid>
             </Grid>
           </Grid>
