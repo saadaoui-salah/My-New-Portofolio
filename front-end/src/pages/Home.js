@@ -3,7 +3,7 @@ import {
   RiLinkedinBoxLine,
   RiGithubLine,
 }
-from "react-icons/ri";
+  from "react-icons/ri";
 import image from './image.jpg'
 import { Avatar, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
   },
   wel: {
-    margin:'10px',
+    margin: '10px',
     color: '#fff'
   },
   icon: {
@@ -126,8 +126,9 @@ function Home() {
                 </Typical>
                 <h3 className={classes.wel} >Welcome To My Website</h3>
                 <h3 className={classes.wel} >
-                  Coding is my hobbie i enjoy building things, solving problems,
-                  I learned a lot that's why i have many skills and technologies i always seek to gain new skills to be more stronger day after day    
+                  Hard-working programmer with a flair for creating elegant solutions in the least amount of time ...<br/>
+                  Looking to use my programming skills to build something new,
+                  Investigated new technologies to improve my skills
                 </h3>
               </Grid>
             </Grid>
