@@ -6,3 +6,10 @@ services:
         command: python manage.py runserver 0.0.0.0:8000 
         ports:
             - 8000:8000
+        depends_on:
+            react
+    react:
+        image: node
+        command: npm install || npm start 0.0.0.0:5000
+        ports:
+            - 5000:5000
