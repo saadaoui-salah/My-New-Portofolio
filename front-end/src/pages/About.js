@@ -124,7 +124,7 @@ function About(data) {
   return (
 
     <div id="About" className={classes.paper}>
-      <Grid container>
+      <Grid container >
         <Grid item xs={4} md={5}>
           <div className={classes.divider1}></div>
         </Grid>
@@ -136,39 +136,39 @@ function About(data) {
         <Grid item xs={4} md={5}>
           <div className={classes.divider2}></div>
         </Grid>
-        {data.Specialyties.map((speciality) => {
-          return (
-            <Grid item lg={4} xl={4} md={4} key={speciality.id} xs={12} >
-              <Card data-aos="flip-left"
-                className={classes.box}>
-                <h1 data-aos="fade-top"
-                  className={classes.title}
+      {data.Specialyties.map((speciality) => {
+        return (
+          <Grid item lg={4} xl={4} md={4}  key={speciality.id} xs={12} >
+            <Card data-aos="flip-left"
+              className={classes.box}>
+              <h1 data-aos="fade-top"
+                className={classes.title}
                 >
-                  {speciality.Name}
-                </h1>
-                <Grid item
-                  xs={12}
-                  md={12}
+                {speciality.Name}
+              </h1>
+              <Grid item
+                xs={12}
+                md={12}
                 >
-                  {speciality.Skills.map((sk) => {
-
-                    return (
-                      <CardContent >
-                        {data.Skills.map((skill) => {
-                          if (skill.id === sk) {
-                            return (
-                              <Bars Percentage={skill.Percentage} Name={skill.Name} key={skill.id} />
+                {speciality.Skills.map((sk) => {
+                  
+                  return (
+                    <CardContent >
+                      {data.Skills.map((skill) => {
+                        if (skill.id === sk) {
+                          return (
+                            <Bars Percentage={skill.Percentage} Name={skill.Name} key={skill.id} />
                             )
                           }
                         })}
-                      </CardContent>
-                    )
-                  })}
-                </Grid>
-              </Card>
-            </Grid>
-          )
-        })}
+                    </CardContent>
+                  )
+                })}
+              </Grid>
+            </Card>
+          </Grid>
+        )
+      })}
       </Grid>
       <div className={classes.margin}></div>
     </div >

@@ -88,7 +88,7 @@ function Contact() {
         direction="row"
         justify="center"
         alignItems="center" >
-        <form className={classes.form}>
+        <form className={classes.form} action="mailto:salahsaadaoui8@gmail.com" method="GET" >
           <Grid container
             direction="column"
             justify="center"
@@ -114,7 +114,7 @@ function Contact() {
               </Typography>
             </Grid>
             <TextareaAutosize cols="20" rows="10" className={classes.input}></TextareaAutosize>
-            <Button className={classes.btn}>SEND</Button>
+            <Button type="submit" className={classes.btn}>SEND</Button>
           </Grid>
         </form>
 

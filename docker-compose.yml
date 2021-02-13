@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+    django:
+        build:
+            context: ./project/
+            dockerfile: Dockerfile
+        command: python manage.py runserver 0.0.0.0:8000 
+        ports:
+            - 8000:8000
+    frontend:
+        build:
+            context: ./frontend/
+            dockerfile: Dockerfile
+        restart: always
+        command : yarn serve
+        container_name: front
+        ports:
+            - "3000:3000"
+        stdin_open: true
+        depends_on:
+            - django
