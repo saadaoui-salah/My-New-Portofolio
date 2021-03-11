@@ -6,17 +6,17 @@ between the front-end and the backend
 
 ### DJANGO:
 
-    -cd project 
-    -pip install -r requirements.txt
-    -manage.py makemigrations
-    -manage.py migrate 
-    -manage.py runserver
+    cd project 
+    pip install -r requirements.txt
+    manage.py makemigrations
+    manage.py migrate 
+    manage.py runserver
 ### REACT:
 
-    -cd front-end 
-    -npm install 
-    -npm run 
+    cd front-end 
+    npm install 
+    npm run 
 ### OR USE DOCKER:
 
-    -docker-compose build
-    -docker-compose up
+    docker-compose build
+    docker-compose up
