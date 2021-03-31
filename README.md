@@ -1,6 +1,6 @@
 # My Portofolio
 This is my personel website i build it with react 
-and django and use a rest api for communication 
+and django using rest api for communication 
 between the front-end and the backend 
 ## Usage:
 
