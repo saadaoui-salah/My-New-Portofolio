@@ -1,11 +1,9 @@
-FROM node:14
-
-WORKDIR /app/frontend
-
-COPY package.json ./app/frontend
-
-RUN npm install 
-
+FROM node:13.12.0-alpine as build
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install
 RUN npm install react-scripts@3.4.1 -g 
-
-COPY . ./app/frontend
+COPY . ./
+RUN npm run build
